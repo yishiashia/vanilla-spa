@@ -1,7 +1,12 @@
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open("my-cache").then(function (cache) {
-      return cache.addAll(["/vanilla-spa/index.html"]);
+      return cache.addAll([
+        "/vanilla-spa/index.html",
+        "/vanilla-spa/index.js",
+        "/vanilla-spa/style.css",
+        "/vanilla-spa/9d745a86c141e9aac3cae47d41d9ad77e4ee8aed03f1078ce6e487042c914483.webp",
+      ]);
     })
   );
 });
