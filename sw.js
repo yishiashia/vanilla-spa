@@ -22,10 +22,10 @@ self.addEventListener("fetch", function (event) {
         // 否則，發送網絡請求以獲取資源
         return fetch(event.request).then(function (response2) {
           // 獲取到最新的資源後，將其添加到快取中
-          caches.open("my-cache").then(function (cache) {
+          return caches.open("my-cache").then(function (cache) {
             cache.put(event.request, response2.clone());
+            return response2;
           });
-          return response2;
         });
       }
     })
