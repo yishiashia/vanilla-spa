@@ -89,7 +89,7 @@
         const t = e.touches[0];
         // 修正 y 座標，考慮 safe-area-inset-top
         const safeTop = parseFloat(getComputedStyle(document.body).getPropertyValue('padding-top')) || 0;
-        const y = t.clientY - safeTop;
+        const y = t.clientY + safeTop;
         lastTouch = { x: t.clientX, y };
         coords.innerHTML = `X: ${t.clientX.toFixed(2)}<br>Y: ${y.toFixed(2)}`;
       }
