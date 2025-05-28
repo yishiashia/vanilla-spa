@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Touch Event Demo</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #coords {
+      font-size: 1.5em;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .touch-area {
+      width: 100vw;
+      height: 100vh;
+      background: #f0f0f0;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      touch-action: none;
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .content {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100vw;
+      text-align: center;
+      z-index: 2;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="touch-area" id="touchArea">
+    <div class="content">
+      <h1>Touch Event 座標顯示</h1>
+      <div>請在畫面任意區域觸控，會顯示觸控座標：</div>
+      <span id="coords">尚未觸控</span>
+    </div>
+  </div>
+  <script>
+    const touchArea = document.getElementById('touchArea');
+    const coords = document.getElementById('coords');
+    let lastTouch = null;
+    touchArea.addEventListener('touchstart', showCoords);
+    touchArea.addEventListener('touchmove', showCoords);
+
+    function showCoords(e) {
+      if (e.touches.length > 0) {
+        const t = e.touches[0];
+        lastTouch = { x: t.clientX, y: t.clientY };
+        coords.innerHTML = `X: ${t.clientX.toFixed(2)}<br>Y: ${t.clientY.toFixed(2)}`;
+      }
+    }
+  </script>
+</body>
+
+</html>
